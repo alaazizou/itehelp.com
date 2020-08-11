@@ -1,13 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import MainTabNav from './app/components/navigation/MainTabNav'
+import { DrawerContent } from './app/components/navigation/DrawerContent'
+
+const Drawer = createDrawerNavigator();
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>hello my name is alaa</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator  drawerContent={props => <DrawerContent {...props} />}>
+        <Drawer.Screen name="HomeDrawer" component={MainTabNav} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
 
